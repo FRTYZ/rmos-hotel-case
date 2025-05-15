@@ -70,7 +70,7 @@ export function Table<TData extends TableRowData, TValue>({
 
     return (
         <>
-          {/*   {searchFilter && (
+            {/*   {searchFilter && (
                 <Filters 
                     pageSize={table.getState().pagination.pageSize}
                     setPageSize={table.setPageSize}
@@ -135,32 +135,36 @@ export function Table<TData extends TableRowData, TValue>({
                                 </tr>
                             )}
                     </tbody>
-                    <tfoot className="table-caption caption-bottom border-y border-gray-400">
-                      <div className="grid grid-cols-2 gap-4 items-center my-2 mx-4">
-                          <div className="flex-1 text-sm text-muted-foreground">
-                              {showDataText}
-                          </div>
-                          <div className="flex items-center justify-end gap-2">
-                              <XButton 
-                                  label="Geri"
-                                  disabled={!table.getCanPreviousPage()}
-                                  onClick={() => table.previousPage()}
-                                  textStyle='text-black text-[16px] font-[600]'
-                                  padding='p-[5px]'
-                                  radius='rounded-lg'
-                                  addStyle="!w-fit border border-gray-400"
-                              />
-                              <XButton 
-                                  label="İleri"
-                                  disabled={!table.getCanNextPage()}
-                                  onClick={() => table.nextPage()}
-                                  textStyle='text-black text-[16px] font-[600]'
-                                  padding='p-[5px]'
-                                  radius='rounded-lg'
-                                  addStyle="!w-fit border border-gray-400"
-                              />
-                          </div>
-                      </div>
+                    <tfoot>
+                        <tr className=" border-y border-gray-400">
+                            <td colSpan={columns.length}>
+                                <div className="grid grid-cols-2 gap-4 items-center my-2 mx-4">
+                                    <div className="flex-1 text-sm text-muted-foreground">
+                                        {showDataText}
+                                    </div>
+                                    <div className="flex items-center justify-end gap-2">
+                                        <XButton 
+                                            label="Geri"
+                                            disabled={!table.getCanPreviousPage()}
+                                            onClick={() => table.previousPage()}
+                                            textStyle='text-black text-[16px] font-[600]'
+                                            padding='p-[5px]'
+                                            radius='rounded-lg'
+                                            addStyle="!w-fit border border-gray-400"
+                                        />
+                                        <XButton 
+                                            label="İleri"
+                                            disabled={!table.getCanNextPage()}
+                                            onClick={() => table.nextPage()}
+                                            textStyle='text-black text-[16px] font-[600]'
+                                            padding='p-[5px]'
+                                            radius='rounded-lg'
+                                            addStyle="!w-fit border border-gray-400"
+                                        />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                     </tfoot>
                 </table>
             </div>
