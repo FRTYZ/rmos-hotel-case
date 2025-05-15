@@ -14,8 +14,8 @@ import {
     getSortedRowModel,
 } from "@tanstack/react-table";
 
-/* import Filters from "./Partials/Filters";
- */
+import Filters from "./Partials/Filters";
+ 
 // FormElements
 import XButton from "../FormElements/XButton";
 
@@ -26,11 +26,13 @@ interface TableRowData {
 interface TableProps<TData, TValue> {
     columns: any;
     data: TData[];
+    searchFilter?: boolean;
 }
 
 export function Table<TData extends TableRowData, TValue>({
     columns,
-    data
+    data,
+    searchFilter
 }: TableProps<TData, TValue>) {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [rowSelection, setRowSelection] = useState({});
@@ -70,15 +72,14 @@ export function Table<TData extends TableRowData, TValue>({
 
     return (
         <>
-            {/*   {searchFilter && (
+           {searchFilter && (
                 <Filters 
                     pageSize={table.getState().pagination.pageSize}
                     setPageSize={table.setPageSize}
                     globalFilter={globalFilter ?? ""}
                     setGlobalFilter={setGlobalFilter}
-                    setQueryUrl={setQueryUrl}
                 />
-            )}  */}
+            )}
             <div className="overflow-x-auto">
                 <table className="table-auto w-full">
                     <thead className="text-xs font-semibold uppercase text-gray-500 bg-gray-50">
