@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react"
+'use client'
+
+import { useState } from "react"
+
+// Components
+import Drawer from "../../../components/Drawer";
 
 // Form Elements
 import XInput from "../../../components/FormElements/XInput";
-import XSelectBox from "../../../components/FormElements/XSelectBox";
 import XButton from "../../../components/FormElements/XButton";
-
-import Drawer from "../../../components/Drawer";
-import Tabs from "./Tabs";
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
@@ -18,6 +19,8 @@ const Filters = () => {
     const router = useRouter();
     const pathname = usePathname();
 
+    const params = new URLSearchParams(window.location.search);
+
     const startDateParam = searchParams.get('start_date');
     const endDateParam = searchParams.get('end_date');
 
@@ -25,8 +28,6 @@ const Filters = () => {
     const [endDate, setEndDate] = useState<string>(endDateParam ? endDateParam : '');
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-    
 
     const startDateInput = (
         <XInput
@@ -106,8 +107,6 @@ const Filters = () => {
             return;
         }
 
-        const params = new URLSearchParams(window.location.search);
-
         if (startDate) {
             params.set('start_date', startDate);
         } else {
@@ -125,10 +124,17 @@ const Filters = () => {
     }
 
     const handleResetFilters = () => {
-        setStartDate('')
-        setEndDate('')
-        router.replace('/')
-        setIsDrawerOpen(false)
+        setIsDrawerOpen(false);
+
+        setStartDate('');
+        setEndDate('');
+
+        // URLSearchParams'tan tarih filtrelerini sil
+        params.delete('start_date');
+        params.delete('end_date');
+
+        // URL'yi güncelle
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     }
 
     return (
