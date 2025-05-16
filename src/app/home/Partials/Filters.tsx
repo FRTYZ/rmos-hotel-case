@@ -1,28 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 // Form Elements
-import XInput from "../../FormElements/XInput";
-import XSelectBox from "../../FormElements/XSelectBox";
-import XButton from "../../FormElements/XButton";
+import XInput from "../../../components/FormElements/XInput";
+import XSelectBox from "../../../components/FormElements/XSelectBox";
+import XButton from "../../../components/FormElements/XButton";
 
-import Drawer from "../../Drawer";
+import Drawer from "../../../components/Drawer";
+import Tabs from "./Tabs";
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
-interface FiltersProps {
-    pageSize: number,
-    setPageSize: (param: number) => void,
-    globalFilter: string,
-    setGlobalFilter: (param: string) => void,
-}
-
-const Filters = ({
-    pageSize,
-    setPageSize,
-    globalFilter,
-    setGlobalFilter,
-}: FiltersProps) => {
+const Filters = () => {
  
     // Router
     const searchParams = useSearchParams();
@@ -37,40 +26,7 @@ const Filters = ({
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-    const pageSizeSelect = (
-         <XSelectBox
-            name="selectCause"
-            label="Sayfa başı"
-            labelType="top"
-            inputClassName="h-5"
-            placeholder="Gösterim sayısı"
-            value={pageSize}
-            values={[
-                {
-                    value: 10,
-                    label: 'Varsayılan',
-                },
-                {
-                    value: 20,
-                    label: 20,
-                },
-                {
-                    value: 30,
-                    label: 30,
-                },
-                {
-                    value: 40,
-                    label: 40,
-                },
-            ]}
-            onChange={(e) => {
-                setPageSize(
-                    Number(e.target.value)
-                );
-            }}
-            tabIndex={1}
-        />
-    )
+    
 
     const startDateInput = (
         <XInput
@@ -130,6 +86,16 @@ const Filters = ({
 
     const handleRightFilters = () => {
 
+        if (!startDate || !endDate) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Geçersiz Filtreleme',
+                text: 'Bitiş tarihi veya başlangıç tarihini seçmelisiniz.',
+                confirmButtonText: 'Tamam',
+            });
+            return;
+        }
+
         if (startDate && endDate && new Date(endDate) < new Date(startDate)) {
             Swal.fire({
                 icon: 'warning',
@@ -166,11 +132,7 @@ const Filters = ({
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-center py-4 border-y border-gray-400">
-            <div className="flex gap-4 justify-start col-span-12 lg:col-span-4 lg:border-r lg:border-gray-300">
-                {pageSizeSelect}
-            </div>
-            <div className="grid lg:flex gap-4 justify-end col-span-12 lg:col-span-8">
+            <div className="grid lg:flex py-4 gap-4 justify-end border-y border-gray-400">
                 <div className="hidden lg:flex gap-4 lg:grid-cols-5">
                     {startDateInput}
                     {endDateInput}
@@ -209,7 +171,6 @@ const Filters = ({
                     </Drawer>
                 </div>
             </div>
-        </div>
     )
 
 }
