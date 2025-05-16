@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from "@/libs/queryClient";
 
+// Components
+import Navbar from "@/components/layout/Navbar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +27,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryClientProvider client={queryClient}>
-          {children}
+          <Navbar />
+          <main className='pt-5'>{children}</main>
         </QueryClientProvider>
       </body>
     </html>
