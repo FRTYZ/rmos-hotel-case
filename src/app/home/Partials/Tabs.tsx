@@ -23,10 +23,10 @@ function Tabs() {
     }, [activeTab])
     
     return (
-            <div className="flex border-b border-gray-300 mb-4">
+            <div className="flex justify-center border-b border-gray-300 mb-4">
                 <XButton 
                     onClick={() => setActiveTab('date')}
-                    label={'Tarih Forecast'}
+                    label={'Tarih'}
                     className={`px-4 py-2 text-sm font-medium ${
                         activeTab === 'date'
                         ? 'border-b-2 border-blue-500 text-blue-600'
@@ -35,7 +35,7 @@ function Tabs() {
                 />
                 <XButton 
                     onClick={() => setActiveTab('graph')}
-                    label={'Forecast Grafiği'}
+                    label={'Grafik'}
                     className={`ml-4 px-4 py-2 text-sm font-medium ${
                         activeTab === 'graph'
                         ? 'border-b-2 border-blue-500 text-blue-600'

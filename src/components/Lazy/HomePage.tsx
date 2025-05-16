@@ -18,7 +18,7 @@ function HomePageLazy() {
             <header className="flex px-3 py-4 justify-end border-b border-gray-100">
                 <div className='w-[30%] h-10 bg-gray-600 animate-pulse'></div>
             </header>
-            <header className="flex px-1 py-1 justify-start border-b border-gray-100">
+            <header className="flex px-1 py-1 justify-center border-b border-gray-100">
                 <div className='w-[20%] h-6 bg-gray-600 animate-pulse'></div>
             </header>
             <hr />

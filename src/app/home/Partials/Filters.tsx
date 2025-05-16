@@ -141,7 +141,7 @@ const Filters = () => {
     }
 
     return (
-            <div className="grid lg:flex py-4 gap-4 justify-end border-y border-gray-400">
+            <div className="grid lg:flex py-4 gap-4 justify-end border-b border-gray-300">
                 {/* Desktop görünümü için */}
                 <div className="hidden lg:flex gap-4 lg:grid-cols-5">
                     {startDateInput}
