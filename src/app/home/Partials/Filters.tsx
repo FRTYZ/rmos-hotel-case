@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 
-// Components
+// Componentler
 import Drawer from "../../../components/Drawer";
 
-// Form Elements
+// Form Elementleri
 import XInput from "../../../components/FormElements/XInput";
 import XButton from "../../../components/FormElements/XButton";
 
@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 
 const Filters = () => {
  
-    // Router
+    // Router ve param
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -24,11 +24,12 @@ const Filters = () => {
     const startDateParam = searchParams.get('start_date');
     const endDateParam = searchParams.get('end_date');
 
+    // useStateler
     const [startDate, setStartDate] = useState<string>(startDateParam ? startDateParam : '');
     const [endDate, setEndDate] = useState<string>(endDateParam ? endDateParam : '');
-
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+    // Form Elemanlarımız
     const startDateInput = (
         <XInput
             type='date'
@@ -85,6 +86,7 @@ const Filters = () => {
         />
     )
 
+    // Filtreleme fonksiyonu
     const handleRightFilters = () => {
 
         if (!startDate || !endDate) {
@@ -123,6 +125,7 @@ const Filters = () => {
         setIsDrawerOpen(false)
     }
 
+    // Filtreleme temizleme fonksiyonu
     const handleResetFilters = () => {
         setIsDrawerOpen(false);
 
@@ -139,12 +142,14 @@ const Filters = () => {
 
     return (
             <div className="grid lg:flex py-4 gap-4 justify-end border-y border-gray-400">
+                {/* Desktop görünümü için */}
                 <div className="hidden lg:flex gap-4 lg:grid-cols-5">
                     {startDateInput}
                     {endDateInput}
                     {rightButtonFilter}
                     {rightButtonClear}
                 </div>
+                {/* Mobil, Tablet görünüm için drawer kullanıldı */}
                 <div className="flex lg:hidden">
                     <Drawer
                         buttonContent={

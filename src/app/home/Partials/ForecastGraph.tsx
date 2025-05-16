@@ -1,7 +1,8 @@
-import React, {useMemo} from 'react'
+import { useMemo } from 'react'
 
 import Chart from '@/components/Chart';
 
+// interface ve type
 import { HotelStatsTypes } from '@/app/types/hotel-stats';
 
 interface GrafikTabloProps {
@@ -11,6 +12,10 @@ interface GrafikTabloProps {
 function ForecastGraph({
     data
 }: GrafikTabloProps) {
+
+    /* 
+        useMemo ile rapor özetin alınması
+    */
     const stats = useMemo(() => {
         const totalItems = data.length
         const totalNetOda = data.reduce((acc, item) => acc + item["Net Oda"], 0)
@@ -20,11 +25,11 @@ function ForecastGraph({
         const totalFree = data.reduce((acc, item) => acc + item["Free"], 0)
 
         return {
-        odaOrtalama: totalNetOda / totalItems,
-        yatakOrtalama: totalYatakPercent / totalItems,
-        toplamYetişkin: totalYetişkin,
-        toplamÇocuk: totalÇocuk,
-        toplamFree: totalFree,
+            odaOrtalama: totalNetOda / totalItems,
+            yatakOrtalama: totalYatakPercent / totalItems,
+            toplamYetişkin: totalYetişkin,
+            toplamÇocuk: totalÇocuk,
+            toplamFree: totalFree,
         }
     }, [])
         
@@ -40,7 +45,6 @@ function ForecastGraph({
                     <p>🎟️ Toplam Boş Oda Sayısı: <strong>{stats.toplamFree}</strong></p>
                 </div>
             </main>
-
             <hr />
             <Chart
                 data={data} 

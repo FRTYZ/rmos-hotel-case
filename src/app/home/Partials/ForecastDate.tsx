@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 // Components
 import Table from '@/components/Table';
 
-// Other npm packages
+// interface ve type
 import { HotelStatsTypes } from '@/app/types/hotel-stats';
 
 interface ForecastDateProps {
