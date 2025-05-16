@@ -3,16 +3,20 @@
 import { useState } from "react"
 
 // Componentler
-import Drawer from "../../../components/Drawer";
+import Drawer from "../../Drawer";
 
 // Form Elementleri
-import XInput from "../../../components/FormElements/XInput";
-import XButton from "../../../components/FormElements/XButton";
+import XInput from "../../FormElements/XInput";
+import XButton from "../../FormElements/XButton";
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
-const Filters = () => {
+interface FiltersProps {
+    title: string
+}
+
+const Filters = ({ title }: FiltersProps) => {
  
     // Router ve param
     const searchParams = useSearchParams();
@@ -141,7 +145,12 @@ const Filters = () => {
     }
 
     return (
-            <div className="grid lg:flex py-4 gap-4 justify-end border-b border-gray-300">
+        <div className="grid grid-cols-1 lg:grid-cols-12 px-5 gap-6 lg:gap-4 items-center py-4 border-b border-gray-300">
+            <div className="flex gap-4 justify-center lg:justify-start col-span-12 lg:col-span-4">
+               <p className="font-[600] text-[20px]">{title}</p>
+            </div>
+        
+            <div className="grid lg:flex gap-4 justify-end col-span-12 lg:col-span-8">
                 {/* Desktop görünümü için */}
                 <div className="hidden lg:flex gap-4 lg:grid-cols-5">
                     {startDateInput}
@@ -182,6 +191,8 @@ const Filters = () => {
                     </Drawer>
                 </div>
             </div>
+
+        </div>
     )
 
 }

@@ -15,8 +15,8 @@ import {
 } from "@tanstack/react-table";
 
 // FormElements
-import XButton from "./FormElements/XButton";
-import XSelectBox from "./FormElements/XSelectBox";
+import XButton from "../FormElements/XButton";
+import XSelectBox from "../FormElements/XSelectBox";
 
 interface TableProps<TData, TValue> {
     columns: any;
@@ -63,7 +63,7 @@ export function Table<TData, TValue>({
 
     return (
         <>
-            <div className="flex my-4">
+            <div className="flex my-8">
                <XSelectBox
                 name="selectCause"
                 label="Sayfa başı"

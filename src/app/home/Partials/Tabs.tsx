@@ -26,7 +26,7 @@ function Tabs() {
             <div className="flex justify-center border-b border-gray-300 mb-4">
                 <XButton 
                     onClick={() => setActiveTab('date')}
-                    label={'Tarih'}
+                    label={'Tablo'}
                     className={`px-4 py-2 text-sm font-medium ${
                         activeTab === 'date'
                         ? 'border-b-2 border-blue-500 text-blue-600'

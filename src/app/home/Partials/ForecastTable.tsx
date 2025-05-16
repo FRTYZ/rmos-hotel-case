@@ -3,16 +3,16 @@ import { useMemo } from 'react'
 import { ColumnDef } from "@tanstack/react-table";
 
 // Components
-import Table from '@/components/Table';
+import Table from '@/components/DataTable/Table';
 
 // interface ve type
 import { HotelStatsTypes } from '@/app/types/hotel-stats';
 
-interface ForecastDateProps {
+interface ForecastTableProps {
     data: HotelStatsTypes[]
 }
 
-function ForecastDate({ data }: ForecastDateProps) {
+function ForecastTable({ data }: ForecastTableProps) {
 
     const columns: ColumnDef<HotelStatsTypes>[] = useMemo(
         () => [
@@ -270,4 +270,4 @@ function ForecastDate({ data }: ForecastDateProps) {
     )
 }
 
-export default ForecastDate
+export default ForecastTable

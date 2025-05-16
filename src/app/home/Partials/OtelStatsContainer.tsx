@@ -8,9 +8,9 @@ import { Request } from '@/helpers/Request';
 import HomePageLazy from '@/components/Lazy/HomePage';
 
 // Partials
-import Filters from '@/app/home/Partials/Filters';
+import Filters from '@/components/DataTable/Partials/Filters';
 import Tabs from '@/app/home/Partials/Tabs';
-import ForecastDate from '../Partials/ForecastDate';
+import ForecastTable from './ForecastTable';
 import ForecastGraph from '../Partials/ForecastGraph';
 
 // Other npm packages
@@ -65,7 +65,7 @@ function OtelStatsContainer() {
             cev_01: null,
         };
 
-        // İsteğimizi helper fonksiyon ile yaptık
+        // API İsteğini helper fonksiyon ile yaptık
         const otelStats = await Request({
             method: 'POST',
             url: '/Procedure/StpRmforKlasik_2',
@@ -96,13 +96,13 @@ function OtelStatsContainer() {
 
     return ( 
         <div className="w-full mx-auto">
-             <div  className="w-full px-4 bg-white rounded-sm ">
+            <div  className="w-full bg-white rounded-sm ">
                 {!isLoading && otelStats?.value ? (
                     <>
-                        <Filters />
+                        <Filters title='Forecast' />
                         <Tabs />
                         {activeTab == 'date' ? (
-                            <ForecastDate data={otelStats.value} />
+                            <ForecastTable data={otelStats.value} />
                         ): (
                             <ForecastGraph data={otelStats.value} />
                         )}
