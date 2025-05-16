@@ -11,8 +11,8 @@ import {
 
 type DataItem = {
   Tarih: string;
-  DoluOda: number;
-  BosOda: number;
+  Free: number;
+  Mevcut: number;
 };
 
 interface Props {
