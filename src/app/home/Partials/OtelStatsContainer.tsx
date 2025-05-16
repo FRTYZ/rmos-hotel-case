@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react'
 import { Request } from '@/helpers/Request';
 
 // Components
-import TableLazy from '@/components/TableLazy';
+import HomePageLazy from '@/components/Lazy/HomePage';
 
 // Partials
 import Filters from '@/app/home/Partials/Filters';
@@ -108,7 +108,7 @@ function OtelStatsContainer() {
                         )}
                     </>
                 ): (
-                    <TableLazy />
+                    <HomePageLazy />
                 )}
             </div>
         </div>

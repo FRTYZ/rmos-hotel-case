@@ -63,12 +63,12 @@ export function Table<TData, TValue>({
 
     return (
         <>
-             <div className="flex gap-4 justify-start col-span-12 lg:col-span-4 lg:border-r lg:border-gray-300">
+            <div className="flex my-4">
                <XSelectBox
                 name="selectCause"
                 label="Sayfa başı"
                 labelType="top"
-                inputClassName="h-2"
+                inputClassName="!h-4"
                 placeholder="Gösterim sayısı"
                 value={table.getState().pagination.pageSize}
                 values={[
@@ -97,7 +97,6 @@ export function Table<TData, TValue>({
                 tabIndex={1}
             />
             </div>
-           
             <div className="overflow-x-auto">
                 <table className="table-auto w-full">
                     <thead className="text-xs font-semibold uppercase text-gray-500 bg-gray-50">
