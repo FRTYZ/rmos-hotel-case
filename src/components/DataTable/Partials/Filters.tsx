@@ -8,6 +8,7 @@ import XButton from "../../FormElements/XButton";
 import Drawer from "../../Drawer";
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import Swal from "sweetalert2";
 
 interface FiltersProps {
     pageSize: number,
@@ -71,7 +72,7 @@ const Filters = ({
         />
     )
 
-    const minPriceInput = (
+    const startDateInput = (
         <XInput
             type='date'
             value={startDate}
@@ -86,7 +87,7 @@ const Filters = ({
         />
     )
 
-    const maxPriceInput = (
+    const endDateInput = (
         <XInput
             type='date'
             value={endDate}
@@ -128,6 +129,17 @@ const Filters = ({
     )
 
     const handleRightFilters = () => {
+
+        if (startDate && endDate && new Date(endDate) < new Date(startDate)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Geçersiz Tarih',
+                text: 'Bitiş tarihi, başlangıç tarihinden önce olamaz.',
+                confirmButtonText: 'Tamam',
+            });
+            return;
+        }
+
         const params = new URLSearchParams(window.location.search);
 
         if (startDate) {
@@ -160,8 +172,8 @@ const Filters = ({
             </div>
             <div className="grid lg:flex gap-4 justify-end col-span-12 lg:col-span-8">
                 <div className="hidden lg:flex gap-4 lg:grid-cols-5">
-                    {minPriceInput}
-                    {maxPriceInput}
+                    {startDateInput}
+                    {endDateInput}
                     {rightButtonFilter}
                     {rightButtonClear}
                 </div>
@@ -189,8 +201,8 @@ const Filters = ({
                         width='!w-[100vw] lg:w-[80vw]'
                     >
                         <div className="grid grid-cols-1 gap-4 mt-5 lg:grid-cols-5">
-                            {minPriceInput}
-                            {maxPriceInput}
+                            {startDateInput}
+                            {endDateInput}
                             {rightButtonFilter}
                             {rightButtonClear}
                         </div>

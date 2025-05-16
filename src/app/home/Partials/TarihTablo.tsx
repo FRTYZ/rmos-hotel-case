@@ -1,5 +1,5 @@
 'use client'
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { ColumnDef } from "@tanstack/react-table";
 
 // Helpers
@@ -12,14 +12,32 @@ import TableLazy from '@/components/TableLazy';
 // Other npm packages
 import {useQuery} from '@tanstack/react-query'
 import { HotelStatsTypes } from '@/app/types/hotel-stats';
+import { useSearchParams } from "next/navigation";
+
+interface GetOtelStatsProps {
+    startDate?: string;
+    endDate?: string;
+}
 
 function TarihTablo() {
-    const getOtelStats = async() => {
+    
+    const searchParams = useSearchParams();
+
+    const startDate = searchParams.get('start_date') ?? '2024-06-01';
+    const endDate = searchParams.get('end_date') ?? "2024-06-20";
+
+    const isValidDates = useMemo(() => startDate !== '' && endDate !== '', [startDate, endDate]);
+
+    const  getOtelStats = async({
+        startDate = '2024-06-01', 
+        endDate = "2024-06-20"
+    }: GetOtelStatsProps) => {
+        
         const payload = {
             db_Id: 9,
             xRez_Sirket: 9,
-            xBas_Tar: "2024-06-01",
-            xBit_Tar: "2024-06-10",
+            xBas_Tar: startDate,
+            xBit_Tar: endDate,
             xtip: 1,
             kon1: "ALL",
             kon2: "BB",
@@ -54,14 +72,15 @@ function TarihTablo() {
         isError,
         error,
     } = useQuery({
-        queryKey: ['otelStats'],
-        queryFn: getOtelStats,
-        staleTime: 1000 * 60 * 5,         // 5 dakika boyunca "fresh"
-        refetchOnWindowFocus: false,      // Sekme odaklanınca tekrar fetch yapma
-        refetchOnMount: false,            // Komponent her mount olduğunda refetch yapma
-        refetchOnReconnect: true,         // İnternet bağlantısı gelince refetch yap
-        refetchInterval: false,           // Otomatik aralıklarla fetch yapma
-    })
+        queryKey: ['otelStats', startDate, endDate],
+        queryFn: () => getOtelStats({ startDate, endDate }),
+        enabled: isValidDates, // sadece iki tarih de varsa çalışsın
+        staleTime: 1000 * 60 * 5,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: true,
+        refetchInterval: false,
+    });
 
     const columns: ColumnDef<HotelStatsTypes>[] = useMemo(
         () => [
@@ -315,6 +334,7 @@ function TarihTablo() {
                 <Table
                     data={otelStats.value!}
                     columns={columns}
+                    searchFilter={true}
                 />
             ): (
                 <TableLazy />
