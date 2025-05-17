@@ -6,14 +6,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import Table from '@/components/DataTable/Table';
 import XButton from '@/components/FormElements/XButton';
 
+// Partials
 import BlackListOperations from './BlackListOperations';
 
-// interface ve type
+// interface veya type
 import { BlackListsTypes } from '@/app/types/black-lists';
-
-interface BlackListTableProps {
-    data: BlackListsTypes[]
-}
+import { BlackListTableProps } from '../blacklist';
 
 function BlackListTable({ data }: BlackListTableProps) {
     // useStates
@@ -21,6 +19,9 @@ function BlackListTable({ data }: BlackListTableProps) {
     const [isUpdateDrawerOpen, setIsUpdateDrawerOpen] = useState(false);    
     const [selectedDataForDeletion, setSelectedDataForDeletion] = useState<BlackListsTypes | null>();
 
+    /* 
+        Tablo için column
+    */
     const columns: ColumnDef<BlackListsTypes>[] = useMemo(
         () => [
             {
@@ -179,6 +180,9 @@ function BlackListTable({ data }: BlackListTableProps) {
 
     return (
         <>
+            {/*
+                CRUD işlemler
+            */}
             <BlackListOperations 
                 update={{
                     isUpdateDrawerOpen,
@@ -190,8 +194,10 @@ function BlackListTable({ data }: BlackListTableProps) {
                     selectedDataForDeletion:selectedDataForDeletion!,
                     setSelectedDataForDeletion: setSelectedDataForDeletion
                 }}
-               
             />
+             {/*
+                Tablo
+            */}
             <div  className="w-full px-4 bg-white rounded-sm ">
                 <Table
                     data={data}
@@ -199,7 +205,6 @@ function BlackListTable({ data }: BlackListTableProps) {
                 />
             </div>
         </>
-        
     )
 }
 

@@ -1,19 +1,8 @@
-import { ReactElement } from 'react'
+// Next router
 import Link from 'next/link';
 
-interface FireButtonProps {
-    href?: string;
-    label?: ReactElement | string;
-    disabled?: boolean;
-    backgroundColor?:string;
-    textStyle?:string;
-    padding?:string;
-    margin?:string;
-    radius?:string;
-    addStyle?:string;
-    onClick?: () => void;
-    [key: string]: any;
-}
+// inteface ve type
+import { XButtonProps } from './FormElements';
 
 export default function XButton({
     href,
@@ -28,7 +17,7 @@ export default function XButton({
     addStyle = '',
     onClick,
     ...rest
-}: FireButtonProps) {
+}: XButtonProps) {
     const hoverStyle = backgroundColor == 'white' ? 'opacity-80' : 'bg-gray-800'
 
     return (

@@ -11,8 +11,8 @@ export default function LogoutPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Token temizle
     logout()
+    
     // Login sayfasına yönlendir
     router.push("/login");
   }, []);

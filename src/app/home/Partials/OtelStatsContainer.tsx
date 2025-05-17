@@ -1,5 +1,5 @@
 'use client'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 // Helpers
 import { Request } from '@/helpers/Request';
@@ -13,15 +13,12 @@ import Tabs from '@/app/home/Partials/Tabs';
 import ForecastTable from './ForecastTable';
 import ForecastGraph from '../Partials/ForecastGraph';
 
-// Other npm packages
+// paketler
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from "next/navigation";
 
-// Interfaces
-interface GetOtelStatsProps {
-    startDate?: string;
-    endDate?: string;
-}
+// Interface
+import { GetOtelStatsProps } from '../home';
 
 function OtelStatsContainer() {
     const searchParams = useSearchParams();
@@ -101,7 +98,7 @@ function OtelStatsContainer() {
                     <>
                         <Filters title='Forecast' />
                         <Tabs />
-                        {activeTab == 'date' ? (
+                        {activeTab == 'table' ? (
                             <ForecastTable data={otelStats.value} />
                         ): (
                             <ForecastGraph data={otelStats.value} />

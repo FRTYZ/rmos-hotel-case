@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 // interface
-import { ParametersProps, AuthResponse } from "./interface";
+import { ParametersProps, AuthResponse } from "./helpers";
 
 /*
     Giriş sayfası için helper fonksiyonu, 

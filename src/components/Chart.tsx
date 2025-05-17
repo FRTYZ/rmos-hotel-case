@@ -9,17 +9,10 @@ import {
   Legend,
 } from "recharts";
 
-type DataItem = {
-  Tarih: string;
-  Free: number;
-  Mevcut: number;
-};
+// interface veya type
+import { ChartProps } from "./components";
 
-interface Props {
-  data: DataItem[];
-}
-
-const Chart: React.FC<Props> = ({ data }) => {
+const Chart: React.FC<ChartProps> = ({ data }) => {
   const formattedData = data.map((item) => ({
     ...item,
     Tarih: new Date(item.Tarih).toLocaleDateString("tr-TR", {

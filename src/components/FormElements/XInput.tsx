@@ -1,22 +1,4 @@
-import { ReactElement } from "react";
-
-
-interface XInputProp {
-    type: string;
-    name?: string;
-    label?: string;
-    labelType?: | 'normal' | 'top';
-    value?: string | number;
-    placeholder?: string;
-    errorMessage?: string;
-    helperText?: string;
-    disabled?: boolean;
-    sideContent?: ReactElement | null;
-    sideContentPosition?: string;
-    addStyle?: string
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    [key: string]: any;
-}
+import { XInputProp } from "./FormElements";
 
 export default function XInput({
     type = 'text',

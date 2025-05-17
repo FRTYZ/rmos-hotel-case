@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 
-import Link from 'next/link';
-
-// Components
+// Componentler
 import Drawer from '../Drawer';
 import XButton from '../FormElements/XButton';
 
+// Next Router
 import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+// Zustand
 import { useAuthStore } from '@/store/useAuthStore';
 
 function Navbar() {
@@ -17,17 +19,20 @@ function Navbar() {
 
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     
-    const navLinks = [
-        { href: '/', label: 'Forecast' },
-        { href: '/blacklist', label: 'Blacklist' },
-    ]
-
     useEffect(() => {
         if(pathname){
             setIsDrawerOpen(!isDrawerOpen)
         }
     }, [pathname])
 
+    const navLinks = [
+        { href: '/', label: 'Forecast' },
+        { href: '/blacklist', label: 'Blacklist' },
+    ]
+
+    /*
+        Menü elemanları
+    */
     const menuItems = (
         <ul className="grid items-baseline justfiy-center lg:flex space-y-6 lg:space-y-1 lg:space-x-8 ">
             {hasEmail ? (
@@ -102,7 +107,6 @@ function Navbar() {
                             {menuItems}
                         </div>
                     </Drawer>
-                   
                 </div>
             </nav>
         </header> 

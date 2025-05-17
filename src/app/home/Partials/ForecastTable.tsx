@@ -5,12 +5,9 @@ import { ColumnDef } from "@tanstack/react-table";
 // Components
 import Table from '@/components/DataTable/Table';
 
-// interface ve type
+// interface veya type
 import { HotelStatsTypes } from '@/app/types/hotel-stats';
-
-interface ForecastTableProps {
-    data: HotelStatsTypes[]
-}
+import { ForecastTableProps } from '../home';
 
 function ForecastTable({ data }: ForecastTableProps) {
 

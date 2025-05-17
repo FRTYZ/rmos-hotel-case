@@ -1,5 +1,5 @@
 export interface HotelStatsTypes {
-  Tarih: string; // ISO Date format
+  Tarih: string;
   Oda: number;
   Pax: number;
   Free: number;
@@ -102,5 +102,5 @@ export interface HotelStatsTypes {
   Fark_Yuzde: number;
   'Kdv%': number;
   'Kon.Vergisi%': number;
-  TarihAy: string; // or Date if parsed
+  TarihAy: string;
 }

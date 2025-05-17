@@ -1,33 +1,9 @@
 'use client'
-import React, { useState, useEffect, ReactElement,ReactNode, MouseEvent } from "react";
+import React, { useState, useEffect, ReactElement,ReactNode } from "react";
 import { clsx } from "clsx";
 
-type classNameTypes = {
-    right: string;
-    left: string;
-    top: string;
-    bottom: string;
-}
-
-type drawerClassNameType = {
-    open: classNameTypes;
-    close: classNameTypes;
-    main: classNameTypes;
-}
-
-interface DrawerProps {
-    isOpen?: boolean;
-    onOpenChange?: (open: boolean) => void;
-    backgroundColor?: string;
-    width?: string;
-    padding?: string;
-    margin?: string;
-    side: string;
-    hiddenCloseIcon?: boolean;
-    colorCloseIcon?: string;
-    buttonContent: ReactElement | null;
-    children: ReactNode;
-}
+// inteface veya type
+import { DrawerProps, drawerClassNameType } from "./components";
 
 export default function Drawer({
         isOpen,

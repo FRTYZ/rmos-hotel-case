@@ -3,15 +3,11 @@ import { useMemo } from 'react'
 import Chart from '@/components/Chart';
 
 // interface ve type
-import { HotelStatsTypes } from '@/app/types/hotel-stats';
-
-interface GrafikTabloProps {
-    data: HotelStatsTypes[]
-}
+import { ForecastGraphProps } from '../home';
 
 function ForecastGraph({
     data
-}: GrafikTabloProps) {
+}: ForecastGraphProps) {
 
     /* 
         useMemo ile rapor özetin alınması

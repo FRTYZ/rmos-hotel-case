@@ -12,9 +12,8 @@ import XButton from "../../FormElements/XButton";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
-interface FiltersProps {
-    title: string
-}
+// interface veya type
+import { FiltersProps } from "../DataTable";
 
 const Filters = ({ title }: FiltersProps) => {
  

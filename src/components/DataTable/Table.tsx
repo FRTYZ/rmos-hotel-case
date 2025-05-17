@@ -14,14 +14,11 @@ import {
     getSortedRowModel,
 } from "@tanstack/react-table";
 
-// FormElements
+// FormElementleri
 import XButton from "../FormElements/XButton";
 import XSelectBox from "../FormElements/XSelectBox";
 
-interface TableProps<TData, TValue> {
-    columns: any;
-    data: TData[];
-}
+import { TableProps } from "./DataTable";
 
 export function Table<TData, TValue>({
     columns,

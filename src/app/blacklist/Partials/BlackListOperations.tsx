@@ -14,21 +14,9 @@ import Swal from 'sweetalert2';
 import { useFormik } from 'formik';
 import { useQueryClient } from '@tanstack/react-query';
 
+// interface veya type
 import { BlackListsTypes } from '@/app/types/black-lists';
-
-interface BlackListOperationsProps {
-  update: {  
-    isUpdateDrawerOpen: boolean;
-    setIsUpdateDrawerOpen: (isUpdateDrawerOpen: boolean) => void;
-    selectedDataForUpdate: BlackListsTypes;
-    setSelectedDataForUpdate: (selectedData: BlackListsTypes | null) => void
-  };
-  delete: {
-    selectedDataForDeletion: BlackListsTypes
-    setSelectedDataForDeletion: (selectedDataForDeletion:BlackListsTypes | null) => void
-  }
- 
-}
+import { BlackListOperationsProps } from '../blacklist';
 
 function BlackListOperations({ 
   update:{
@@ -41,7 +29,6 @@ function BlackListOperations({
     selectedDataForDeletion,
     setSelectedDataForDeletion
   }
-
 }: BlackListOperationsProps) {
   
   const queryClient = useQueryClient();
@@ -55,88 +42,87 @@ function BlackListOperations({
 
   // Form işlemleri
   const formik = useFormik({
-      enableReinitialize: true,
-      initialValues: {
-          id: (selectedDataForUpdate?.Id ? selectedDataForUpdate.Id : ''),
-          name: (selectedDataForUpdate?.Adi ? selectedDataForUpdate.Adi : ''),
-          surname: (selectedDataForUpdate?.Soy ? selectedDataForUpdate.Soy : ''),
-          description: (selectedDataForUpdate?.Aciklama ? selectedDataForUpdate.Aciklama : ''),
-          birth_date: (selectedDataForUpdate?.Dogum_tarihi ? new Date(selectedDataForUpdate.Dogum_tarihi).toISOString().split('T')[0] : ''),
-          tcNo: (selectedDataForUpdate?.Tcno && selectedDataForUpdate?.Tcno !== 'null' ? selectedDataForUpdate.Tcno  :  ''),
-          country: (selectedDataForUpdate?.Ulke_xml ? selectedDataForUpdate.Ulke_xml : ''),
-      },
-      validate: (values) => {
-          const errors: { [key: string]: string } = {};
+    enableReinitialize: true,
+    initialValues: {
+        id: (selectedDataForUpdate?.Id ? selectedDataForUpdate.Id : ''),
+        name: (selectedDataForUpdate?.Adi ? selectedDataForUpdate.Adi : ''),
+        surname: (selectedDataForUpdate?.Soy ? selectedDataForUpdate.Soy : ''),
+        description: (selectedDataForUpdate?.Aciklama ? selectedDataForUpdate.Aciklama : ''),
+        birth_date: (selectedDataForUpdate?.Dogum_tarihi ? new Date(selectedDataForUpdate.Dogum_tarihi).toISOString().split('T')[0] : ''),
+        tcNo: (selectedDataForUpdate?.Tcno && selectedDataForUpdate?.Tcno !== 'null' ? selectedDataForUpdate.Tcno  :  ''),
+        country: (selectedDataForUpdate?.Ulke_xml ? selectedDataForUpdate.Ulke_xml : ''),
+    },
+    validate: (values) => {
+        const errors: { [key: string]: string } = {};
 
-          const {name, surname, description, birth_date, tcNo, country } = values;
+        const {name, surname, description, birth_date, tcNo, country } = values;
 
-          if (name == '') {
-            errors.name = "Ad alanını doldurmalısınız";
-          }
-          if (surname == '') {
-            errors.surname = "Soyad alanını doldurmalısınız";
-          }
-          if (description == '') {
-            errors.description = "Açıklama alanını doldurmalısınız";
-          }
-          if (!birth_date) {
-            errors.birth_date = "Doğum Tarihi belirlemelisiniz";
-          }
-          if (tcNo == '') {
-            errors.tcNo = "TC NO alanını doldurmalısınız";
-          }
-          if (country == '') {
-            errors.country = "Ülke XML alanını doldurmalısınız";
-          }
+        if (name == '') {
+        errors.name = "Ad alanını doldurmalısınız";
+        }
+        if (surname == '') {
+        errors.surname = "Soyad alanını doldurmalısınız";
+        }
+        if (description == '') {
+        errors.description = "Açıklama alanını doldurmalısınız";
+        }
+        if (!birth_date) {
+        errors.birth_date = "Doğum Tarihi belirlemelisiniz";
+        }
+        if (tcNo == '') {
+        errors.tcNo = "TC NO alanını doldurmalısınız";
+        }
+        if (country == '') {
+        errors.country = "Ülke XML alanını doldurmalısınız";
+        }
 
-          return errors;
+        return errors;
       },
       onSubmit: async (values, { resetForm }) => {
-          try {
-              const {id, name, surname, description, birth_date, tcNo, country} = values;
+        try {
+            const {id, name, surname, description, birth_date, tcNo, country} = values;
 
-              const response = await Request({
-                  method: 'POST',
-                  url: '/Kara/Ekle',
-                  data:  {
-                      db_Id: 9,
-                      Id: id === '' ? 0 : id,
-                      Adi: name,
-                      Soy: surname,
-                      Aciklama: description,
-                      Dogum_tarihi: birth_date,
-                      Tcno: tcNo,
-                      Ulke_xml: country
-                  }
-              });
+            const response = await Request({
+                method: 'POST',
+                url: '/Kara/Ekle',
+                data:  {
+                    db_Id: 9,
+                    Id: id === '' ? 0 : id,
+                    Adi: name,
+                    Soy: surname,
+                    Aciklama: description,
+                    Dogum_tarihi: birth_date,
+                    Tcno: tcNo,
+                    Ulke_xml: country
+                }
+            });
 
-              if (response.isSucceded) {
-                  Swal.fire({
-                      icon: 'success',
-                      title: 'İşlem Başarılı',
-                      html: `İlgili veri ${id ? 'güncellendi' : 'oluşturuldu.'}`,
-                      confirmButtonText: 'Tamam'
-                  });
+            if (response.isSucceded) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'İşlem Başarılı',
+                    html: `İlgili veri ${id ? 'güncellendi' : 'oluşturuldu.'}`,
+                    confirmButtonText: 'Tamam'
+                });
 
-                  queryClient.invalidateQueries({ queryKey: ['getBlackLists'] });
+                queryClient.invalidateQueries({ queryKey: ['getBlackLists'] });
 
-                  setIsUpdateDrawerOpen(false);
-                  setIsDrawerCreateOpen(false)
-                  resetForm();
-              } else {
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Hata',
-                      text: response.errors.message || 'İşlem başarısız oldu.',
-                  });
-              }
-
+                setIsUpdateDrawerOpen(false);
+                setIsDrawerCreateOpen(false)
+                resetForm();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: response.errors.message || 'İşlem başarısız oldu.',
+                });
+            }
           } catch (error: any) {
-              Swal.fire({
-                  icon: 'error',
-                  title: 'Hata',
-                  text: error.response?.data?.errors.title || error.message || 'Bir hata oluştu!',
-              });
+            Swal.fire({
+                icon: 'error',
+                title: 'Hata',
+                text: error.response?.data?.errors.title || error.message || 'Bir hata oluştu!',
+            });
           }
       }
   })
@@ -249,7 +235,7 @@ function BlackListOperations({
   )
 
   /*
-      Delete fonksiyonu, cache'te olan veriyi siler
+    Delete fonksiyonu, seçilen veriyi cache'teki veriden siler
   */
   const handleDeleteList = async(dataToDelete: BlackListsTypes) => {
         const {value} = await Swal.fire({
@@ -293,43 +279,43 @@ function BlackListOperations({
 
   return (
     <>
-      <Drawer
-          buttonContent={null}
-          isOpen={isUpdateDrawerOpen}
-          onOpenChange={(open) => setIsUpdateDrawerOpen(open)}
-          backgroundColor='bg-white'
-          side='right'
-          padding='px-8 pt-12'
-          width='w-[100vw] lg:w-[80vw]'
-      >
-          {blacklistForm}
-      </Drawer>
-      <header className="grid grid-cols-2 py-4 px-5 items-center border-b border-gray-300">
-          <p className="font-[600] text-[20px] py-4">Black List</p>
-          <div  className="text-end">
-              <Drawer
-                  buttonContent={
-                      <XButton 
-                          label="Yeni Kayıt Ekle"
-                          backgroundColor='bg-white'
-                          textStyle='text-black text-[16px] font-[600]'
-                          padding='px-4 py-2 lg:px-8 lg:py-3'
-                          radius='rounded-lg'
-                          addStyle="!w-fit border border-gray-500"
-                          onClick={() => setSelectedDataForUpdate(null)}
-                      />
-                  }
-                  isOpen={isDrawerCreateOpen}
-                  onOpenChange={(open) => setIsDrawerCreateOpen(open)}
-                  backgroundColor='bg-white dark:bg-primary-dark'
-                  side='right'
-                  padding='px-8 pt-12'
-                  width='w-[100vw] lg:w-[80vw]'
-              >
-                {blacklistForm}
-              </Drawer>
-          </div>
-      </header>
+        <Drawer
+            buttonContent={null}
+            isOpen={isUpdateDrawerOpen}
+            onOpenChange={(open) => setIsUpdateDrawerOpen(open)}
+            backgroundColor='bg-white'
+            side='right'
+            padding='px-8 pt-12'
+            width='w-[100vw] lg:w-[80vw]'
+        >
+            {blacklistForm}
+        </Drawer>
+        <header className="grid grid-cols-2 py-4 px-5 items-center border-b border-gray-300">
+            <p className="font-[600] text-[20px] py-4">Black List</p>
+            <div  className="text-end">
+                <Drawer
+                    buttonContent={
+                        <XButton 
+                            label="Yeni Kayıt Ekle"
+                            backgroundColor='bg-white'
+                            textStyle='text-black text-[16px] font-[600]'
+                            padding='px-4 py-2 lg:px-8 lg:py-3'
+                            radius='rounded-lg'
+                            addStyle="!w-fit border border-gray-500"
+                            onClick={() => setSelectedDataForUpdate(null)}
+                        />
+                    }
+                    isOpen={isDrawerCreateOpen}
+                    onOpenChange={(open) => setIsDrawerCreateOpen(open)}
+                    backgroundColor='bg-white dark:bg-primary-dark'
+                    side='right'
+                    padding='px-8 pt-12'
+                    width='w-[100vw] lg:w-[80vw]'
+                >
+                    {blacklistForm}
+                </Drawer>
+            </div>
+        </header>
     </>
   )
 }
