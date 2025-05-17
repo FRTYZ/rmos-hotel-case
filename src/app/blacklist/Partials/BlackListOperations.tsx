@@ -229,7 +229,7 @@ function BlackListOperations({
                           backgroundColor='bg-black'
                           textStyle='text-white text-[16px] font-[600]'
                           padding='px-8 py-3'
-                          disabled={!formik.dirty || !formik.isValid}
+                          disabled={selectedDataForUpdate ? !formik.dirty || !formik.isValid : !formik.isValid}
                           radius='rounded-lg'
                           addStyle="!w-fit"
                           tabIndex={6}

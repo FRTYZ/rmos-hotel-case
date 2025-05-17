@@ -16,7 +16,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from "@/libs/queryClient";
 
 // Components
-import Navbar from "@/components/layout/Navbar";
+import Navbar from "@/components/Layout/Navbar";
 
 export default function RootLayout({
   children,
