@@ -186,7 +186,11 @@ function BlackListTable({ data }: BlackListTableProps) {
                     selectedDataForUpdate:selectedData!,
                     setSelectedDataForUpdate:setSelectedData
                 }}
-                selectedDataForDeletion={selectedDataForDeletion!}
+                delete={{
+                    selectedDataForDeletion:selectedDataForDeletion!,
+                    setSelectedDataForDeletion: setSelectedDataForDeletion
+                }}
+               
             />
             <div  className="w-full px-4 bg-white rounded-sm ">
                 <Table

@@ -23,7 +23,11 @@ interface BlackListOperationsProps {
     selectedDataForUpdate: BlackListsTypes;
     setSelectedDataForUpdate: (selectedData: BlackListsTypes | null) => void
   };
-  selectedDataForDeletion: BlackListsTypes
+  delete: {
+    selectedDataForDeletion: BlackListsTypes
+    setSelectedDataForDeletion: (selectedDataForDeletion:BlackListsTypes | null) => void
+  }
+ 
 }
 
 function BlackListOperations({ 
@@ -33,7 +37,11 @@ function BlackListOperations({
     selectedDataForUpdate, 
     setSelectedDataForUpdate 
   },
-  selectedDataForDeletion
+  delete: {
+    selectedDataForDeletion,
+    setSelectedDataForDeletion
+  }
+
 }: BlackListOperationsProps) {
   
   const queryClient = useQueryClient();
@@ -250,7 +258,7 @@ function BlackListOperations({
             html: `
                 İgili veriyi silmek istediğinizden emin misiniz ? <br/>
                 ID:  <b>${dataToDelete.Id}</b> <br/>
-                Ürün Adı:  <b>${dataToDelete.Adi} ${dataToDelete.Soy}</b> <br/>
+                Adı Soyadı:  <b>${dataToDelete.Adi} ${dataToDelete.Soy}</b> <br/>
             `,
             icon: 'warning',
             showCancelButton: true,
@@ -277,6 +285,8 @@ function BlackListOperations({
               html: 'İlgili veri başarıyla silindi.',
               confirmButtonText: 'Tamam'
           });
+        }else{
+            setSelectedDataForDeletion(null)
         }
     }
 
