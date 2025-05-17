@@ -12,7 +12,7 @@ import { useAuthStore } from '@/store/useAuthStore'
 import { HandleLoginToken } from '@/helpers/Request';
 
 // Router
-import {  useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Npm paketleri
 import { useFormik } from 'formik';
@@ -54,6 +54,12 @@ function page() {
                 })
             }else{
                 login(email, String(getToken));
+                 Swal.fire({
+                    icon: 'success',
+                    title: 'Giriş Yapıldı.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
 
                 router.push('/')
             }
