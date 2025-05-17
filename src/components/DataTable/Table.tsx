@@ -25,7 +25,7 @@ interface TableProps<TData, TValue> {
 
 export function Table<TData, TValue>({
     columns,
-    data
+    data = []
 }: TableProps<TData, TValue>) {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [rowSelection, setRowSelection] = useState({});

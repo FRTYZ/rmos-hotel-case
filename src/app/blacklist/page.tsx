@@ -4,9 +4,8 @@ import React from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 
-import TableHeader from './Partials/TableHeader';
 import BlackListTable from './Partials/BlackListTable';
-import HomePageLazy from '@/components/Lazy/HomePage';
+import BlacklistLazy from '@/components/Lazy/BlacklistLazy';
 
 // Helpers
 import { Request } from '@/helpers/Request';
@@ -53,10 +52,10 @@ function page() {
   return (
       <div className="w-full mx-auto">
           <div  className="w-full bg-white rounded-sm">
-            {!isLoading && blackLists?.value ? (
-                <BlackListTable data={blackLists.value} /> 
+            {blackLists?.value && !isLoading ? (
+                <BlackListTable data={blackLists?.value} /> 
             ): (
-                <HomePageLazy />
+                <BlacklistLazy />
             )}
         </div>
       </div>
