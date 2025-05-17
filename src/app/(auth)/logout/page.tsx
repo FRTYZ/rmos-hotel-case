@@ -3,14 +3,18 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+import { useAuthStore } from "@/store/useAuthStore";
+
 export default function LogoutPage() {
+  const logout = useAuthStore((state) => state.logout)
+
   const router = useRouter();
 
   useEffect(() => {
     // Token temizle
-    localStorage.removeItem("access_token");
+    logout()
     // Login sayfasına yönlendir
-    router.replace("/login");
+    router.push("/login");
   }, []);
 
   return (

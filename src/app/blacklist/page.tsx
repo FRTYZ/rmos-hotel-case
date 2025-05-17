@@ -4,7 +4,10 @@ import React from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 
+// Partials
 import BlackListTable from './Partials/BlackListTable';
+
+// Components
 import BlacklistLazy from '@/components/Lazy/BlacklistLazy';
 
 // Helpers

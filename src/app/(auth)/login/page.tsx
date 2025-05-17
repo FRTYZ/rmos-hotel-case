@@ -5,14 +5,23 @@ import React from 'react'
 import XInput from '@/components/FormElements/XInput';
 import XButton from '@/components/FormElements/XButton';
 
+// State management
+import { useAuthStore } from '@/store/useAuthStore'
+
 // Request helper
 import { HandleLoginToken } from '@/helpers/Request';
+
+// Router
+import {  useRouter} from "next/navigation";
 
 // Npm paketleri
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 
 function page() {
+    const router = useRouter();
+    const login = useAuthStore((state) => state.login);
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -43,6 +52,10 @@ function page() {
                     title: 'Hata',
                     text: `${getToken.error} - ${getToken.error_description}`,
                 })
+            }else{
+                login(email, String(getToken));
+
+                router.push('/')
             }
         }
     });
