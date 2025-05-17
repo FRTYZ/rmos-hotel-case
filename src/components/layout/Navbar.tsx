@@ -6,10 +6,14 @@ import Link from 'next/link';
 import Drawer from '../Drawer';
 import XButton from '../FormElements/XButton';
 
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuthStore } from '@/store/useAuthStore';
 
 function Navbar() {
-    const pathname = usePathname()
+    const router = useRouter()
+    const pathname = usePathname();
+
+    const hasEmail = useAuthStore((state) => state.email)
 
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     
@@ -25,23 +29,42 @@ function Navbar() {
     }, [pathname])
 
     const menuItems = (
-        <ul className="grid lg:flex space-y-5 lg:space-y-1 lg:space-x-8 ">
-            {navLinks.map((link) => {
-                const isActive = pathname === link.href
+        <ul className="grid items-baseline justfiy-center lg:flex space-y-6 lg:space-y-1 lg:space-x-8 ">
+            {hasEmail ? (
+                <>                
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href
 
-                return (
-                    <li key={link.href}>
-                        <Link
-                            href={link.href}
-                            className={`text-gray-700 hover:text-blue-600 text-[25px] lg:text-[18px] font-medium ${
-                                isActive ? 'border-b border-gray-300' : 'border-transparent'
-                            }`}
-                        >
-                            {link.label}
-                        </Link>
-                    </li>
-                )
-            })}
+                        return (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className={`text-gray-700 hover:text-blue-600 text-[25px] lg:text-[18px] font-medium ${
+                                        isActive ? 'border-b border-gray-300' : 'border-transparent'
+                                    }`}
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        )
+                    })}
+                    <XButton 
+                        label='Çıkış Yap'
+                        backgroundColor='bg-red-600'
+                        textStyle='text-white text-[17px] lg:text-[14px] font-[600] rounded-xl'
+                        padding='px-2 py-2'
+                        addStyle='!w-fit'
+                        onClick={() => router.push('/logout')}
+                    />
+                </>
+            ): (
+                <Link
+                    href={'login'}
+                    className={`text-gray-700 hover:text-blue-600 text-[25px] lg:text-[18px] font-medium border-b border-gray-300`}
+                >
+                    Giriş Yap
+                </Link>
+            )}
         </ul>
     )
 
