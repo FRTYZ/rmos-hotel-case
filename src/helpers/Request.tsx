@@ -23,9 +23,6 @@ export async function HandleLoginToken(username: string, password: string): Prom
 
     const data = response.data;
 
-    localStorage.setItem('access_token', data);
-    window.location.href = "/";
-
     return data;
   } catch (error: any) {
     // Giriş hataları için kullanıcılara error gösterilmesi için 
@@ -70,7 +67,15 @@ export async function Request<T = any>(parameters: ParametersProps): Promise<T> 
   
   try {
     const { method = 'GET', url = '', data } = parameters;
-    const token = typeof window !== 'undefined' ? localStorage.getItem("access_token") : null;
+     let token: string | null = null
+
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('auth')
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        token = parsed?.state?.token || null
+      }
+    }
 
     const config: AxiosRequestConfig = {
       method,
