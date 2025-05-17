@@ -87,7 +87,7 @@ function BlackListTable({ data }: BlackListTableProps) {
                 accessorKey: "Dogum_tarihi",
                 header: () => {
                     return (
-                        <div className="flex items-center gap-2 whitespace-nowrap hover:text-zinc-700">Doğum Tarihi</div>
+                        <div className="flex items-center whitespace-nowrap hover:text-zinc-700">Doğum Tarihi</div>
                     );
                 },
             },
@@ -95,7 +95,7 @@ function BlackListTable({ data }: BlackListTableProps) {
                 accessorKey: "Sistem_tarihi",
                 header: () => {
                     return (
-                        <div className="flex items-center gap-2 whitespace-nowrap hover:text-zinc-700">Sistem Tarihi</div>
+                        <div className="flex items-center whitespace-nowrap hover:text-zinc-700">Sistem Tarihi</div>
                     );
                 },
             },
@@ -103,7 +103,13 @@ function BlackListTable({ data }: BlackListTableProps) {
                 accessorKey: "Aciklama",
                 header: () => {
                     return (
-                        <div className="flex items-center gap-2 whitespace-nowrap hover:text-zinc-700">Açıklama</div>
+                        <div className="flex items-center w-min text-wrap flex-wrap hover:text-zinc-700">Açıklama</div>
+                    );
+                },
+                cell: ({ row }) => {
+                    const name = row.original.Aciklama;
+                    return (
+                        <p className='text-wrap'>{name}</p>
                     );
                 },
             },
@@ -111,7 +117,7 @@ function BlackListTable({ data }: BlackListTableProps) {
                 accessorKey: "ULke Adı",
                 header: () => {
                     return (
-                        <div className="flex items-center gap-2 whitespace-nowrap hover:text-zinc-700">Milliyet</div>
+                        <div className="flex items-center whitespace-nowrap hover:text-zinc-700">Milliyet</div>
                     );
                 },
             },
