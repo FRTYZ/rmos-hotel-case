@@ -111,7 +111,7 @@ export default function Drawer({
                     className={clsx(
                     "fixed inset-0 bg-black bg-opacity-80 transition-all",
                     {
-                        "opacity-100 duration-500 ease-in-out visible": open
+                        "opacity-50 duration-500 ease-in-out visible": open
                     },
                     { "opacity-0 duration-500 ease-in-out invisible": !open }
                     )}
@@ -133,9 +133,15 @@ export default function Drawer({
                                 onClick={(event) => {
                                     const targetElement = event.target as HTMLElement;
 
-                                    if (!(targetElement.tagName.toLowerCase() === 'a' && targetElement.hasAttribute('href'))) {
-                                        event.preventDefault();
-                                        event.stopPropagation();
+                                    const isAnchorWithHref =
+                                        targetElement.tagName.toLowerCase() === 'a' && targetElement.hasAttribute('href');
+
+                                    // Sadece a[href] tıklanınca drawer kapansın
+                                    if (isAnchorWithHref) {
+                                        // burada drawer'ı kapatma işlemini yap (örneğin setOpen(false) vs.)
+                                    } else {
+                                        // Diğer tıklamalarda (input, textarea vs.) hiçbir şey yapma
+                                        event.stopPropagation(); // Eğer gerekiyorsa
                                     }
                                 }}
                             >
