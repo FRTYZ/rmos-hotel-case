@@ -24,7 +24,7 @@ function OtelStatsContainer() {
     const searchParams = useSearchParams();
 
     // Params
-    const activeTab = searchParams.get('type') ?? 'date';
+    const activeTab = searchParams.get('type') ?? 'table';
     const startDate = searchParams.get('start_date') ?? '2024-06-01';
     const endDate = searchParams.get('end_date') ?? "2024-06-20";
 

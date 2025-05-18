@@ -6,13 +6,24 @@ import { useState, useEffect } from 'react'
 import XButton from '@/components/FormElements/XButton';
 
 // Next router
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 function Tabs() {
     const router = useRouter();
     const pathname = usePathname();
 
-    const [activeTab, setActiveTab] = useState<'table' | 'graph'>('table');
+    const searchParams = useSearchParams();
+
+    // Params
+    const paramActiveTab = searchParams.get('type') ?? 'table';
+
+    const [activeTab, setActiveTab] = useState<string>('table');
+
+    useEffect(() => {
+        if(paramActiveTab){
+            setActiveTab(paramActiveTab)
+        }
+    }, [paramActiveTab])
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
