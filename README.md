@@ -57,19 +57,18 @@ npm run build
 
 #### API'den gelen hata kodlarına göre uyarı mesajları oluşturulup, gösterilmesi sağlandı.
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login.png?raw=true)
+![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login-alert.png?raw=true)
 
 
 * ### Forecast (Tablo)
 
 #### Tablo için Tanstack'in React Table kullanılarak custom component oluşturulup,özelleştirildi.
 
+![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-table.png?raw=true)
+
 #### Custom drawer ile mobil ekran için filtreleme işlemleri gösterildi
 
 ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-filter-mobile.png?raw=true)
-
-
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-table.png?raw=true)
 
 * ### Forecast (Grafik)
 
@@ -134,3 +133,5 @@ npm run build
   }
 }
 ```
+
+İyi çalışmalar dilerim.
