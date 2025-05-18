@@ -69,8 +69,10 @@ function BlackListOperations({
             if (!birth_date) {
             errors.birth_date = "Doğum Tarihi belirlemelisiniz";
             }
-            if (tcNo == '') {
-            errors.tcNo = "TC NO alanını doldurmalısınız";
+             if (tcNo === '') {
+                errors.tcNo = "TC NO alanını doldurmalısınız";
+            } else if (tcNo.length !== 11) {
+                errors.tcNo = "TC Kimlik numaranız 11 haneli olmalı";
             }
             if (country == '') {
             errors.country = "Ülke XML alanını doldurmalısınız";
