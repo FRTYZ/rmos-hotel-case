@@ -80,7 +80,7 @@ function Navbar() {
                 <div className="flex gap-4 items-center justify-between">
                     <Link href="/" className='border-r border-gray-400 pr-6'>
                         <img 
-                            src={'https://www.rmosyazilim.com/img/logo.png'} 
+                            src={'logo.png'} 
                             className='h-6 w-full hover:text-green-500'
                         />
                     </Link>
