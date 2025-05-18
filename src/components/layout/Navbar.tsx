@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import Image from 'next/image'
+
 // Componentler
 import Drawer from '../Drawer';
 import XButton from '../FormElements/XButton';
@@ -79,9 +81,12 @@ function Navbar() {
                 {/* Sol: Logo */}
                 <div className="flex gap-4 items-center justify-between">
                     <Link href="/" className='border-r border-gray-400 pr-6'>
-                        <img 
-                            src={'logo.png'} 
-                            className='h-6 w-full hover:text-green-500'
+                        <Image
+                            src="/logo.png"
+                            width={150}
+                            height={50}
+                            alt="RMOS"
+                            className='h-6 w-full'
                         />
                     </Link>
                     <p className='text-[18px] font-semibold'>Otel Case</p>
