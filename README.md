@@ -57,8 +57,7 @@ npm run build
 
 #### API'den gelen hata kodlarına göre uyarı mesajları oluşturulup, gösterilmesi sağlandı.
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login-alert.png?raw=true)
-
+![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login-error.png?raw=true)
 
 * ### Forecast (Tablo)
 
@@ -97,6 +96,37 @@ npm run build
 #### Silme işlemi için, React Query'de olan cache'teki verilere göre ilgili id ile filtrelenmesi sağlandı
 
 ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist-delete.png?raw=true)
+
+## Projenin dosya düzeni
+
+* ### src/app
+
+  * src/app/(auth) => login sayfası ve logout işlemi 
+  * src/app/blacklist => blacklist ekranı için ve partials bileşenleri 
+  * src/app/home => forecast ekranı ve partials bileşenleri 
+  * src/types => blacklists ve hotel-stats veriler için type
+
+![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/app-structure.png?raw=true)
+
+
+* ### src/components
+
+  * src/components/DataTable => Table componenti ve partials bileşenleri 
+  * src/components/FormElements => Form elemanları için özel inputlar
+  * src/components/layout => Layout 
+  * src/components/Lazy => Forecast ve BlackList ekranlar için lazy loading
+  * src/components/Chart => Forecast grafik ekranı için grafik componenti
+  * src/components/Drawer => Form, mobile filtre ve navbar için custom drawer
+
+![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/components-structure.png?raw=true)
+
+* ### src/helpers, src/libs, src/store
+
+  * src/helpers/Request.tsx => API istekleri için helper fonksiyonlar 
+  * src/helpers/libs => React Query'in src/app/layout.tsx'de kullanılması için
+  * src/store => Zustand için klasörümüz 
+
+![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/other-structure.png?raw=true)
 
 ### Package.json
 ```

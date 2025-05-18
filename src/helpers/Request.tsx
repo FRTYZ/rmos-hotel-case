@@ -33,11 +33,7 @@ export async function HandleLoginToken(username: string, password: string): Prom
 
       switch (status) {
         case 401:
-          if (responseData?.error === 'invalid_grant') {
-            return { error: 401, error_description: 'Email adresiniz veya parolanız yanlış olabilir.' };
-          } else {
-            return { error: 401, error_description: 'Yetkiniz bulunmamaktadır.' };
-          }
+           return { error: 401, error_description: 'Email adresiniz veya parolanız yanlış olabilir.' };
         case 403:
           return { error: 403, error_description: 'Yetkiniz olmayan talepte bulundunuz.' };
         case 404:
