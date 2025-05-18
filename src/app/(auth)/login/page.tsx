@@ -41,7 +41,7 @@ function page() {
 
             return errors
         },
-        onSubmit: async (values) => {
+        onSubmit: async (values, { setSubmitting }) => {
             const {email, password} = values
 
             const getToken = await HandleLoginToken(email, password);
@@ -54,13 +54,13 @@ function page() {
                 })
             }else{
                 login(email, String(getToken));
-                 Swal.fire({
+                Swal.fire({
                     icon: 'success',
                     title: 'Giriş Yapıldı.',
                     showConfirmButton: false,
                     timer: 1500
                 })
-
+                setSubmitting(false);
                 router.push('/')
             }
         }
@@ -114,7 +114,7 @@ function page() {
                         radius='rounded-lg'
                         addStyle="!w-full"
                         tabIndex={6}
-                        disabled={!formik.isValid}
+                        disabled={formik.isSubmitting || (!formik.dirty || !formik.isValid)}
                     />
                 </form>
             </div>
