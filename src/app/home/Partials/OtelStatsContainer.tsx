@@ -96,7 +96,7 @@ function OtelStatsContainer() {
             <div  className="w-full bg-white rounded-sm ">
                 {!isLoading && otelStats?.value ? (
                     <>
-                        <Filters title='Forecast' />
+                        <Filters title={activeTab == 'table' ? 'Forecast Tablosu' : 'Forecast Grafiği'} />
                         <Tabs />
                         {activeTab == 'table' ? (
                             <ForecastTable data={otelStats.value} />
