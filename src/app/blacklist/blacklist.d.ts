@@ -1,6 +1,6 @@
 import { BlackListsTypes } from '@/app/types/black-lists';
 
-// Black list operations
+// Blacklist operations
 export interface BlackListOperationsProps {
   update: {  
     isUpdateDrawerOpen: boolean;
@@ -14,7 +14,7 @@ export interface BlackListOperationsProps {
   }
 }
 
-// Black list table
+// Blacklist table
 interface BlackListTableProps {
     data: BlackListsTypes[]
 }

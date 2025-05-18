@@ -294,7 +294,7 @@ function BlackListOperations({
                 {blacklistForm}
             </Drawer>
             <header className="grid grid-cols-2 py-4 px-5 items-center border-b border-gray-300">
-                <p className="font-[600] text-[20px] py-4">Black List</p>
+                <p className="font-[600] text-[20px] py-4">Blacklist</p>
                 <div  className="text-end">
                     <Drawer
                         buttonContent={

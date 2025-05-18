@@ -15,7 +15,7 @@ import { Request } from '@/helpers/Request';
 
 function page() {
     /*
-        Black liste verilerini alır
+        Blacklist verilerini alır
     */
     const getBlackLists = async() => {
         const payload = {
