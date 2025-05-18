@@ -52,7 +52,7 @@ function page() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Hata',
-                    text: `${getToken.error} - ${getToken.error_description}`,
+                    text: `${getToken.error_description}`,
                 })
             }else{
                 login(email, String(getToken));

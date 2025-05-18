@@ -1,4 +1,4 @@
-# Otel Case | Fırat YILDIZ
+# Hotel Case | Fırat YILDIZ
 
 Merhaba, case study görevi istenilen şekilde responsive olarak tamamlanmıştır.
 
@@ -53,49 +53,49 @@ npm run build
 
 * ### Giriş Yapma (Login)
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login.png?raw=true)
 
-#### API'den gelen hata kodlarına göre uyarı mesajları oluşturulup, gösterilmesi sağlandı.
+  #### API'den gelen hata kodlarına göre uyarı mesajları oluşturulup, gösterilmesi sağlandı.
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login-error.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/login-alert.png?raw=true)
 
 * ### Forecast (Tablo)
 
-#### Tablo için Tanstack'in React Table kullanılarak custom component oluşturulup,özelleştirildi.
+  #### Tablo için Tanstack'in React Table kullanılarak custom component oluşturulup,özelleştirildi.
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-table.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-table.png?raw=true)
 
-#### Custom drawer ile mobil ekran için filtreleme işlemleri gösterildi
+  #### Custom drawer ile mobil ekran için filtreleme işlemleri gösterildi
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-filter-mobile.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-filter-mobile.png?raw=true)
 
 * ### Forecast (Grafik)
 
-#### Grafikler için Rechart kütüphanesi kullanılıp, tablonun oda sayısı ve boş oda durumuna göre değerlendirildi.
+  #### Grafikler için Rechart kütüphanesi kullanılıp, tablonun oda sayısı ve boş oda durumuna göre değerlendirildi.
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-graph.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/forecast-graph.png?raw=true)
 
 * ### Blacklist
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist.png?raw=true)
 
 * ### Blacklist (kayıt ekleme)
 
-#### Validation gibi form kontrolleri mevcut. Kullanıcı deneyimi için hata durumu ve submit olayına göre buton disable hale getirildi
+  #### Validation gibi form kontrolleri mevcut. Kullanıcı deneyimi için hata durumu ve submit olayına göre buton disable hale getirildi
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist-create.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist-create.png?raw=true)
 
 * ### Blacklist (kayıt güncelleme)
 
-#### Validation gibi form kontrolleri mevcut. Kullanıcı deneyimi için hata durumu ve submit olayına göre buton disable hale getirildi
+  #### Validation gibi form kontrolleri mevcut. Kullanıcı deneyimi için hata durumu ve submit olayına göre buton disable hale getirildi
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist-update.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist-update.png?raw=true)
 
 * ### Blacklist (kayıt silme)
 
-#### Silme işlemi için, React Query'de olan cache'teki verilere göre ilgili id ile filtrelenmesi sağlandı
+  #### Silme işlemi için, React Query'de olan cache'teki verilere göre ilgili id ile filtrelenmesi sağlandı
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist-delete.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/blacklist-delete.png?raw=true)
 
 ## Projenin dosya düzeni
 
@@ -106,19 +106,19 @@ npm run build
   * src/app/home => forecast ekranı ve partials bileşenleri 
   * src/types => blacklists ve hotel-stats veriler için type
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/app-structure.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/app-structure.png?raw=true)
 
 
 * ### src/components
 
   * src/components/DataTable => Table componenti ve partials bileşenleri 
   * src/components/FormElements => Form elemanları için özel inputlar
-  * src/components/layout => Layout 
+  * src/components/layout => Layout düzeni 
   * src/components/Lazy => Forecast ve BlackList ekranlar için lazy loading
   * src/components/Chart => Forecast grafik ekranı için grafik componenti
   * src/components/Drawer => Form, mobile filtre ve navbar için custom drawer
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/components-structure.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/components-structure.png?raw=true)
 
 * ### src/helpers, src/libs, src/store
 
@@ -126,7 +126,7 @@ npm run build
   * src/helpers/libs => React Query'in src/app/layout.tsx'de kullanılması için
   * src/store => Zustand için klasörümüz 
 
-![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/other-structure.png?raw=true)
+  ![alt text](https://github.com/FRTYZ/rmos-hotel-case/blob/main/public/other-structure.png?raw=true)
 
 ### Package.json
 ```
