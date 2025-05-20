@@ -32,7 +32,7 @@ git clone https://github.com/FRTYZ/rmos-hotel-case.git
 git clone git@github.com:FRTYZ/rmos-hotel-case.git
 ```
 
-* ####  localinize klonladıktan sonra projenin ana dizinine `.env` dosyasını açıp kaydetmeniz gerekiyor
+* #### Projeyi localinize klonladıktan sonra projenin ana dizinine `.env` dosyasını oluşturup içerisine bunları kaydedebilirsiniz.
 
 ```
 NEXT_PUBLIC_ENDPOINT=https://frontapi.rmosweb.com/api
